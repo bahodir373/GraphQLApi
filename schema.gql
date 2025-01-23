@@ -1,0 +1,47 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  ID: Int!
+  Username: String!
+  Email: String!
+  Password: String!
+}
+
+type AuthResponse {
+  token: String!
+  user: User!
+}
+
+type ForgotPasswordResponse {
+  message: String!
+  success: Boolean!
+}
+
+type Query {
+  users: [User!]!
+}
+
+type Mutation {
+  register(registerInput: RegisterInput!): User!
+  login(loginInput: LoginInput!): AuthResponse!
+  resetPassword(ID: Int!, newPassword: ResetPasswordInput!): User!
+  forgotPassword(Email: String!): ForgotPasswordResponse!
+  verifyEmail(ID: Int!, VerificationToken: String!): User!
+}
+
+input RegisterInput {
+  Username: String!
+  Password: String!
+  Email: String!
+}
+
+input LoginInput {
+  Username: String!
+  Password: String!
+}
+
+input ResetPasswordInput {
+  NewPassword: String!
+}
