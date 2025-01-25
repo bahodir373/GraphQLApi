@@ -19,8 +19,27 @@ type ForgotPasswordResponse {
   success: Boolean!
 }
 
+type Purchase {
+  id: Int!
+  itemName: String!
+  price: Int!
+  quantity: Int!
+  totalAmount: Int!
+}
+
+type Formalize {
+  id: Int!
+  type: String!
+  details: String!
+  status: String!
+}
+
 type Query {
   users: [User!]!
+  getAllPurchases: [Purchase!]!
+  getPurchase(id: Int!): Purchase!
+  getAllFormalizes: [Formalize!]!
+  getFormalize(id: Int!): Formalize!
 }
 
 type Mutation {
@@ -29,6 +48,12 @@ type Mutation {
   resetPassword(ID: Int!, newPassword: ResetPasswordInput!): User!
   forgotPassword(Email: String!): ForgotPasswordResponse!
   verifyEmail(ID: Int!, VerificationToken: String!): User!
+  createPurchase(itemName: String!, price: Int!, quantity: Int!): Purchase!
+  updatePurchase(id: Int!, itemName: String!, price: Int!, quantity: Int!): Purchase!
+  deletePurchase(id: Int!): Boolean!
+  createFormalize(type: String!, details: String!, status: String!): Formalize!
+  updateFormalize(id: Int!, type: String!, details: String!, status: String!): Formalize!
+  deleteFormalize(id: Int!): Boolean!
 }
 
 input RegisterInput {

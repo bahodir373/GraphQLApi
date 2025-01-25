@@ -7,6 +7,8 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { User } from "./auth/user.entity";
 import { PostgresDataSource } from "./config/database_config";
 import { join } from "path";
+import { PurchaseModule } from './purchase/purchase.module';
+import { FormalizeModule } from './formalize/formalize.module';
 
 @Module({
   imports: [
@@ -18,6 +20,8 @@ import { join } from "path";
       autoSchemaFile: "./schema.gql",
     }),
     TypeOrmModule.forFeature([User]),
+    PurchaseModule,
+    FormalizeModule,
   ],
   providers: [AuthService, AuthResolver],
 })
